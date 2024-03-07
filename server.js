@@ -15,14 +15,19 @@ const Session = require("express-session");
 const MongoStore = require('connect-mongo')
 const flash = require('express-flash');
 
+
+const PORT = process.env.PORT || 3001;
 const routes = require('./routes');
 const path = require('path');
-//const helmet = require('helmet');
+const helmet = require('helmet');
 const csrf = require('csurf');
 const { middlewareGlobal, checksCsrfError, csrfMiddleware } = require('./src/middlewares/middleware');
 
 
-//app.use(helmet())
+app.use(helmet())
+
+// Habilitar o middleware cors para todas as rotas
+app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, 'public')));
@@ -54,10 +59,14 @@ app.use(routes);
 
 
 app.on('conectado', () => {
-  app.listen('3000', () => {
+  app.listen(PORT, () => {
     console.log('Servidor Iniciado com sucesso');
     console.log('Acessar http://localhost:3000')
   })
 })
+
+
+
+module.exports = app;
 
 

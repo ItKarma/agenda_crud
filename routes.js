@@ -24,4 +24,10 @@ route.get('/contato/index/:id', loginRequired ,contatoController.editIndex)
 route.post('/contato/edit/:id', loginRequired ,contatoController.editContact)
 route.get('/contato/delete/:id', loginRequired ,contatoController.delete)
 
+
+// Rota para redenrizar 404 para caminhos que nao existe.
+route.get('*', (req,res) => {
+    res.render('404')
+})
+
 module.exports = route;

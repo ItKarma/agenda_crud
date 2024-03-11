@@ -32,6 +32,10 @@ app.use(cors());
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.resolve(__dirname, 'public')));
+app.use((req, res, next) => {
+  res.setHeader('Content-Security-Policy', "script-src 'self' cdn.jsdelivr.net;");
+  next();
+});
 
 const sessionOptions = Session({
   secret: "kkkkkaaaaaaaaaa",

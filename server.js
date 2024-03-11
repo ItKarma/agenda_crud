@@ -13,7 +13,7 @@ mongoose.connect(process.env.CONNECTION_STR).then(() => {
 })
 
 const Session = require("express-session");
-const MongoStore = require('connect-mongo')
+const MemoryStore = require('memorystore')(Session);
 const flash = require('express-flash');
 
 
@@ -35,7 +35,9 @@ app.use(express.static(path.resolve(__dirname, 'public')));
 
 const sessionOptions = Session({
   secret: "kkkkkaaaaaaaaaa",
-  store: MongoStore.create({ mongoUrl: process.env.CONNECTION_STR }),
+  store: new MemoryStore({
+    checkPeriod: 86400000 // Tempo em milissegundos para verificar a expiração das sessões
+  }),
   resave: false,
   saveUninitialized: false,
   cookie: {

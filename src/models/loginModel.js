@@ -68,7 +68,6 @@ class Login {
             password: this.body.password
         }
 
-        console.log(this.body)
 
     }
 }

@@ -26,6 +26,7 @@
     "express-session": "^1.18.0",
     "flash": "^1.1.0",
     "helmet": "^7.1.0",
+    "memorystore": "^1.6.7",
     "mongoose": "^8.2.0",
     "regenerator-runtime": "^0.13.5",
     "style-loader": "^1.2.1",
